@@ -1,10 +1,9 @@
-
 import VideoListEntry from './VideoListEntry.js';
 
-const VideoList = ({videos, onClick }) => (
-  <div className="video-list" onClick={() => { onClick(); }} >
+const VideoList = ({videos }) => (
+  <div className="video-list" >
     {videos.map( (video) => (
-      <VideoListEntry key={video.id.videoId} video={video} onClick={onClick} />
+      <VideoListEntry key={video.id.videoId} video={video} />
     ))}
   </div>
 );
