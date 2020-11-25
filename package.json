@@ -6,8 +6,8 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
+    "start": " live-server --open=./index.html --port=8080",
     "test": "live-server --open=./SpecRunner.html --open=./index.html --port=8081",
-    "start": " live-server --open=./index.html --port=8081",
     "postinstall": "curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash"
   },
   "dependencies": {
