@@ -38,10 +38,10 @@ class App extends React.Component {
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <div><h5><em>videoPlayer</em> <VideoPlayer video={this.state.playing} /></h5></div>
+          <div><h5> <VideoPlayer video={this.state.playing} /></h5></div>
         </div>
         <div className="col-md-5">
-          <div onClick={this.onVideoClick.bind(this)}><h5><em>videoList</em><VideoList videos={exampleVideoData}/></h5></div>
+          <div onClick={this.onVideoClick.bind(this)}><h5><VideoList videos={exampleVideoData}/></h5></div>
         </div>
       </div>
     </div>
