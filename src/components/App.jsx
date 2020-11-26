@@ -1,31 +1,41 @@
 import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoPlayer from './VideoPlayer.js';
+import searchYouTube from '../lib/searchYouTube.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
 class App extends React.Component {
   constructor (props) {
     super(props);
 
-    // Initialize State
     this.state = {
-      playing: exampleVideoData[2]
+      videos: [],
+      playing: null
     };
   }
 
-  onVideoClick(e) {
-    var title = $(e.target).text(); // Search for this title within the exampleVideoData and return video object
-    var currentIndex = 0;
-    var videoIndex = exampleVideoData.reduce((index, video) => {
-      if (video.snippet.title === title) {
-        index = currentIndex;
-        return index;
-      }
-      currentIndex++;
-      return index;
-    }, null);
+  componentDidMount() {
+    this.getYouTubeVideos('the yankees win john sterling');
+  }
 
+  getYouTubeVideos(query) {
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: query,
+      max: 10
+    };
+
+    searchYouTube(options, (videos) => {
+      this.setState({
+        videos: videos,
+        playing: videos[0]
+      });
+    });
+  }
+
+  onVideoClick(video) {
     this.setState({
-      playing: exampleVideoData[videoIndex]
+      playing: video
     });
   }
 
@@ -41,7 +51,7 @@ class App extends React.Component {
           <div><h5> <VideoPlayer video={this.state.playing} /></h5></div>
         </div>
         <div className="col-md-5">
-          <div onClick={this.onVideoClick.bind(this)}><h5><VideoList videos={exampleVideoData}/></h5></div>
+          <div onClick={this.onVideoClick.bind(this)}><h5><VideoList videos={this.state.videos}/></h5></div>
         </div>
       </div>
     </div>
