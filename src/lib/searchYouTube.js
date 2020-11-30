@@ -6,7 +6,7 @@ var searchYouTube = ({key, query, max = 10}, callback) => {
     maxResults: max,
     type: 'video',
     videoEmbeddable: 'true',
-    order: 'relevance' // play around with this
+    order: 'relevance'
   })
     .done(({items}) => {
       if (callback) {
