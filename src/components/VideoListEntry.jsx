@@ -1,7 +1,7 @@
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoPlayer from './VideoPlayer.js';
-var VideoListEntry = ({video}) => (
-  <div className="video-list-entry media">
+var VideoListEntry = ({video, onVideoClick}) => (
+  <div className="video-list-entry media" onClick={() => { onVideoClick(video); }}>
     <div className="media-left media-middle">
       <img className="media-object" src={video.snippet.thumbnails.default.url} alt="" />
     </div>
